@@ -1,35 +1,32 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main(void)
 {
-	FILE *fp1 = NULL;
-	FILE *fp2 = NULL;
+	FILE *fp = NULL;
 	
+	char input[100];
 	char original[100];
-	char copy[100];
-	char input;
-	int i=0;
+	char find[100];
 	
 	printf("original file name : ");
 	scanf("%s", original);
 	
-	printf("\ncopy file name : ");
-	scanf("%s", copy);
+	fp = fopen(original, "r");
 	
-	fp1 = fopen(original, "r");
-	fp2 = fopen(copy, "w");
+	printf("word to find : ");
+	scanf("%s", find);
 	
-	while((input = fgetc(fp1)) != EOF)
+	while((fgets(input, 100, fp)) != NULL)
 	{
-		fputc(input, fp2);
-		i++;
+		if(strncmp(input, find, strlen(find)) == 0)
+		{
+			printf("\nfind a word %s\n", input);
+		}
 	}
 	
-	printf("\nCopy succeed! (%i Bytes copied)\n", i);
+	printf("search done!\n");
 	
-	fclose(fp1);
-	fclose(fp2);
-
 	return 0;
 }

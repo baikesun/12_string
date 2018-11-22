@@ -21,7 +21,7 @@ int main(void)
 	
 	dst[i] = '\0';
 	
-	printf("dst : %s\n", dst);
+	printf("dst : %s (%d)\n", dst, i);
 	
 	return 0;
 }

@@ -28,5 +28,7 @@ int main(void)
 	
 	printf("search done!\n");
 	
+	fclose(fp);
+	
 	return 0;
 }

@@ -3,31 +3,33 @@
 
 int main(void)
 {
-	FILE *fp = NULL;
+	FILE *fp1 = NULL;
+	FILE *fp2 = NULL;
 	
-	char input[100];
-	//char input;
+	char original[100];
+	char copy[100];
+	char input;
+	int i=0;
 	
-	fp = fopen("sample.txt", "r");
+	printf("original file name : ");
+	scanf("%s", original);
 	
-	if(fp == NULL)
+	printf("\ncopy file name : ");
+	scanf("%s", copy);
+	
+	fp1 = fopen(original, "r");
+	fp2 = fopen(copy, "w");
+	
+	while((input = fgetc(fp1)) != EOF)
 	{
-		printf("파일을 못열음\n");
+		fputc(input, fp2);
+		i++;
 	}
 	
-	/*
-	while((input = fgetc(fp)) != EOF)
-	{
-		putchar(input);
-	}
-	*/
+	printf("\nCopy succeed! (%i Bytes copied)\n", i);
 	
-	while(fgets(input, 100, fp) != NULL)
-	{
-		printf(input);
-	}
-	
-	fclose(fp);
+	fclose(fp1);
+	fclose(fp2);
 
 	return 0;
 }
